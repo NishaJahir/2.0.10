@@ -209,6 +209,8 @@ class PaymentHelper
                ];
            
         $invoiceDetails = json_encode($invoicePrepaymentDetails);
+        $this->getLogger(__METHOD__)->error('invoice', $invoiceDetails);
+        
         $paymentProperty     = [];
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_BOOKING_TEXT, $bookingText);
         $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_TRANSACTION_ID, $transactionId);
@@ -226,6 +228,9 @@ class PaymentHelper
         $payment->properties = $paymentProperty;
         $paymentObj = $this->paymentRepository->createPayment($payment);
 
+        $payment = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
+        $this->getLogger(__METHOD__)->error('payment', $payment);
+        
         $this->assignPlentyPaymentToPlentyOrder($paymentObj, (int)$requestData['order_no']);
     }
     
