@@ -85,6 +85,8 @@ class NovalnetOrderConfirmationDataProvider
 					}
 					$bank_details = array_merge($db_details, json_decode($invoiceDetails, true));
 					$paymentHelper->logger('bankDetails', $bank_details);
+					$paymentHelper->logger('invoiceDetails', $invoiceDetails);
+			$paymentHelper->logger('dbDetails', $db_details);
 					$paymentHelper->logger('tidStatus', $tid_status);
 					if(in_array($db_details['payment_id'], ['40','41'])) {
 						$comments .= PHP_EOL . $paymentHelper->getTranslatedText('guarantee_text');
