@@ -84,6 +84,8 @@ class NovalnetOrderConfirmationDataProvider
 						$comments .= PHP_EOL . $paymentHelper->getTranslatedText('test_order');
 					}
 					$bank_details = array_merge($db_details, json_decode($invoiceDetails, true));
+					$paymentHelper->logger('bankDetails', $bank_details);
+					$paymentHelper->logger('tidStatus', $tid_status);
 					if(in_array($db_details['payment_id'], ['40','41'])) {
 						$comments .= PHP_EOL . $paymentHelper->getTranslatedText('guarantee_text');
 						if($tid_status == '75' && $db_details['payment_id'] == '41')
@@ -96,6 +98,7 @@ class NovalnetOrderConfirmationDataProvider
 						}
 					}
 					if (in_array($bank_details['paymentName'], ['novalnet_invoice', 'novalnet_prepayment']) && in_array($tid_status, ['91', '100'])) {
+						$paymentHelper->logger('enter', 'TRANSACTIONCOMMENTS');
 						$comments .= PHP_EOL . $paymentService->getInvoicePrepaymentComments($bank_details);
 					}
 					if($db_details['payment_id'] == '59' ) {
