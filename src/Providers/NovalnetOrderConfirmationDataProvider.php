@@ -83,6 +83,8 @@ class NovalnetOrderConfirmationDataProvider
 					if(!empty($db_details['test_mode'])) {
 						$comments .= PHP_EOL . $paymentHelper->getTranslatedText('test_order');
 					}
+					$RRR = json_decode($invoiceDetails, true);
+					$paymentHelper->logger('json', $RRR);
 					$bank_details = array_merge($db_details, json_decode($invoiceDetails, true));
 					$paymentHelper->logger('bankDetails', $bank_details);
 					$paymentHelper->logger('invoiceDetails', $invoiceDetails);
