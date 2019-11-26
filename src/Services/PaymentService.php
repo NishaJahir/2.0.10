@@ -169,13 +169,27 @@ class PaymentService
         $this->sessionStorage->getPlugin()->setValue('novalnet_checkout_url', $this->getBarzhalenTestMode($nnPaymentData['test_mode']));        
         }
         
+	if (in_array($nnPaymentData['payment_id'], ['27', '41'])) {
+	      $invoicePrepaymentDetails =  [
+		      'invoice_bankname'  => $nnPaymentData['invoice_bankname'],
+		      'invoice_bankplace' => $nnPaymentData['invoice_bankplace'],
+		      'invoice_iban'      => $nnPaymentData['invoice_iban'],
+		      'invoice_bic'       => $nnPaymentData['invoice_bic'],
+		      'due_date'          => $nnPaymentData['due_date'],
+		      'invoice_type'      => $nnPaymentData['invoice_type'],
+		      'invoice_account_holder' => $nnPaymentData['invoice_account_holder']
+		       ];	
+	}
+	       
+	
         $additional_info = [
             'currency' => $nnPaymentData['currency'],
             'product' => $nnPaymentData['product'],
             'payment_id' => $nnPaymentData['payment_id'],
             'plugin_version' => $nnPaymentData['system_version'],
             'test_mode' => !empty($nnPaymentData['test_mode']) ? $this->paymentHelper->getTranslatedText('test_order',$lang) : '0'
-            ];
+            'bankDetails' => !empty($invoicePrepaymentDetails) ? json_encode($invoicePrepaymentDetails) : '0',    
+	];
 
         $transactionData = [
             'amount'           => $nnPaymentData['amount'] * 100,
