@@ -100,7 +100,7 @@ class NovalnetOrderConfirmationDataProvider
 					}
 					if (in_array($db_details['paymentName'], ['novalnet_invoice', 'novalnet_prepayment']) && in_array($tid_status, ['91', '100'])) {
 						$paymentHelper->logger('enter', 'TRANSACTIONCOMMENTS');
-						//$comments .= PHP_EOL . $paymentService->getInvoicePrepaymentComments($bank_details);
+						$comments .= PHP_EOL . $paymentService->getInvoicePrepaymentComments($db_details);
 					}
 					if($db_details['payment_id'] == '59' ) {
 						$comments .= $cashpayment_comments;
