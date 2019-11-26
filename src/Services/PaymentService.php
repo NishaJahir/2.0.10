@@ -176,14 +176,13 @@ class PaymentService
             'payment_id' => $nnPaymentData['payment_id'],
             'plugin_version' => $nnPaymentData['system_version'],
             'test_mode' => !empty($nnPaymentData['test_mode']) ? $this->paymentHelper->getTranslatedText('test_order',$lang) : '0',
-            'bankDetails' => !empty($invoicePrepaymentDetails) ? json_encode($invoicePrepaymentDetails) : '0',
-	    'invoice_bankname'  => in_array($nnPaymentData['payment_id'], ['27', '41']) ? $nnPaymentData['invoice_bankname'] : '0',
-            'invoice_bankplace' => in_array($nnPaymentData['payment_id'], ['27', '41']) ? $nnPaymentData['invoice_bankplace'] : '0',
-	    'invoice_iban'      => in_array($nnPaymentData['payment_id'], ['27', '41']) ? $nnPaymentData['invoice_iban'] : '0',
-            'invoice_bic'       => in_array($nnPaymentData['payment_id'], ['27', '41']) ? $nnPaymentData['invoice_bic'] : '0',
-	    'due_date'          => in_array($nnPaymentData['payment_id'], ['27', '41']) ? $nnPaymentData['due_date'] : '0',
-	    'invoice_type'      => in_array($nnPaymentData['payment_id'], ['27', '41']) ? $nnPaymentData['invoice_type'] : '0',
-	    'invoice_account_holder' => in_array($nnPaymentData['payment_id'], ['27', '41']) ? $nnPaymentData['invoice_account_holder'] : '0'
+	    'invoice_bankname'  =>  !empty($nnPaymentData['invoice_bankname']) ? $nnPaymentData['invoice_bankname'] : '0',
+            'invoice_bankplace' => !empty($nnPaymentData['invoice_bankplace']) ? $nnPaymentData['invoice_bankplace'] : '0',
+	    'invoice_iban'      => !empty($nnPaymentData['invoice_iban']) ? $nnPaymentData['invoice_iban'] : '0',
+            'invoice_bic'       => !empty($nnPaymentData['invoice_bic']) ? $nnPaymentData['invoice_bic'] : '0',
+	    'due_date'          => !empty($nnPaymentData['due_date']) ? $nnPaymentData['due_date'] : '0',
+	    'invoice_type'      => !empty($nnPaymentData['invoice_type']) ? $nnPaymentData['invoice_type'] : '0',
+	    'invoice_account_holder' => !empty($nnPaymentData['invoice_account_holder']) ? $nnPaymentData['invoice_account_holder'] : '0'
 	];
 
         $transactionData = [
