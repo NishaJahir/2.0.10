@@ -86,6 +86,7 @@ class NovalnetOrderConfirmationDataProvider
 		
 
 			$paymentHelper->logger('dbsDetails', $db_details);
+			$paymentHelper->logger('cash', $cashpayment_comments);		
 					$paymentHelper->logger('tidStatus', $tid_status);
 					if(in_array($db_details['payment_id'], ['40','41'])) {
 						$comments .= PHP_EOL . $paymentHelper->getTranslatedText('guarantee_text');
