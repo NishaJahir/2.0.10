@@ -863,7 +863,9 @@ class PaymentService
         $transaction_details['order_no'] = $transaction_details['orderNo'];
         $transaction_details['amount'] = $transaction_details['amount'] / 100;
         //Decoding the json as array
+	$this->getLogger(__METHOD__)->error('info', $transaction_details['additionalInfo']);
         $transaction_details['additionalInfo'] = json_decode( $transaction_details['additionalInfo'], true );
+	$this->getLogger(__METHOD__)->error('add',  $transaction_details['additionalInfo']);
         //Merging the array
         $transaction_details = array_merge($transaction_details, $transaction_details['additionalInfo']);
         //Unsetting the redundant key
