@@ -187,8 +187,8 @@ class PaymentService
             'product' => $nnPaymentData['product'],
             'payment_id' => $nnPaymentData['payment_id'],
             'plugin_version' => $nnPaymentData['system_version'],
-            'test_mode' => !empty($nnPaymentData['test_mode']) ? $this->paymentHelper->getTranslatedText('test_order',$lang) : '0'
-            'bankDetails' => !empty($invoicePrepaymentDetails) ? json_encode($invoicePrepaymentDetails) : '0',    
+            'test_mode' => !empty($nnPaymentData['test_mode']) ? $this->paymentHelper->getTranslatedText('test_order',$lang) : '0',
+            'bankDetails' => !empty($invoicePrepaymentDetails) ? json_encode($invoicePrepaymentDetails) : '0'
 	];
 
         $transactionData = [
